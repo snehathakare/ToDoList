@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import { Button } from '@material-ui/core';
 import './App.css';
+import Todo from './Todo';
 
 function App() {
 
@@ -17,14 +18,14 @@ function App() {
   return (
     <div className="App">
       <h1>To Do List</h1>
-      <input value={input} id="outlined-basic" label="Outlined" variant="outlined" onChange={event => setInput(event.target.value)} />
+      <input value={input} id="outlined-basic" label="Outlined" variant="outlined" onChange={event => setInput(event.target.value)} placeholder="Add task" />
       <Button variant="contained" color="primary" onClick={addToDo}>
   		Add Task
 	  </Button>
 	  <ul>
 	  	{
-	  		todos.map(todos => (
-	  		<li>{todos}</li>
+	  		todos.map(todo => (
+	  		<Todo text={todo} />
 	  		)
 	  	)}
 	  	
