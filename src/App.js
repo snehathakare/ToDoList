@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { Button } from '@material-ui/core';
+import { Button, FormControl, InputLabel, Input } from '@material-ui/core';
 import './App.css';
 import Todo from './Todo';
 
@@ -18,8 +18,11 @@ function App() {
   return (
     <div className="App">
       <h1>To Do List</h1>
-      <input value={input} id="outlined-basic" label="Outlined" variant="outlined" onChange={event => setInput(event.target.value)} placeholder="Add task" />
-      <Button variant="contained" color="primary" onClick={addToDo}>
+      <FormControl>
+		  <InputLabel>Add Task...</InputLabel>
+		  <Input value={input} onChange={event => setInput(event.target.value)}/>
+	</FormControl>
+      <Button disabled={!input} variant="contained" color="primary" onClick={addToDo}>
   		Add Task
 	  </Button>
 	  <ul>
