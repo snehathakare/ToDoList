@@ -3,6 +3,7 @@ import { Button, FormControl, InputLabel, Input } from '@material-ui/core';
 import './App.css';
 import Todo from './Todo';
 import db from './firebase';
+import firebase from 'firebase';
 
 function App() {
 
@@ -13,7 +14,7 @@ function App() {
 
   	//to listen when there is a change in db
 
-  	db.collection('todo').onSnapshot( snapshot => {
+  	db.collection('todo').orderBy('timestamp', 'desc').onSnapshot( snapshot => {
   		setTodos(snapshot.docs.map(doc => ({id: doc.id, todo: doc.data().todo}) ))
   	})
   	
@@ -24,7 +25,8 @@ function App() {
   	event.preventDefault();
 
   	db.collection('todo').add({
-  		todo: input
+  		todo: input,
+  		timestamp: firebase.firestore.FieldValue.serverTimestamp()
   	})
 
   	setInput('');
