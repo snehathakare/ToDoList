@@ -14,7 +14,7 @@ function App() {
   	//to listen when there is a change in db
 
   	db.collection('todo').onSnapshot( snapshot => {
-  		setTodos(snapshot.docs.map(doc => doc.data().todo))
+  		setTodos(snapshot.docs.map(doc => ({id: doc.id, todo: doc.data().todo}) ))
   	})
   	
   	},[]);
@@ -43,7 +43,7 @@ function App() {
 	  <ul>
 	  	{
 	  		todos.map(todo => (
-	  		<Todo text={todo} />
+	  		<Todo todo={todo} />
 	  		)
 	  	)}
 	  	
