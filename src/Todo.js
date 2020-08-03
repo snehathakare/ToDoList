@@ -6,13 +6,13 @@ function Todo(props) {
 
   return (
     <div className="todo">
-      <List>
+      <List className="todo__list">
         <ListItem>
           <ListItemText primary="Todo" secondary={props.todo.todo} />
-            <Button variant="contained" color="primary" onClick={event => db.collection('todo').doc(props.todo.id).delete()} >
+        </ListItem>
+        <Button variant="contained" color="primary" onClick={event => db.collection('todo').doc(props.todo.id).delete()} >
               X DELETE ME
             </Button>
-        </ListItem>
       </List>
     </div>
   );
